@@ -1,12 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const htmlToDocx = require('html-to-docx');
+const cors = require('cors');
 
 const path = require('path');
 
 
 const app = express();
 app.use(bodyParser.json());
+
+app.use(cors())
+
 
 exports.htmlCssToDocx = async (req, res) => {
     try {
@@ -15,6 +19,7 @@ exports.htmlCssToDocx = async (req, res) => {
       if (!html || !cssStyles) {
         return res.status(400).send('HTML code and CSS styles are required.');
       }
+
   
       // Combine HTML and CSS into a single string
       const content = `
